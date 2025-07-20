@@ -16,10 +16,9 @@ return new class extends Migration
             $table->string('nama_karya_guru', 50);
             $table->string('foto_karya_guru', 200);
             $table->text('isi_karya');
-            $table->unsignedBigInteger('guru_id');
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->timestamps();
 
-            $table->foreign('guru_id')->references('id')->on('akuns')->onDelete('cascade');
         });
     }
 

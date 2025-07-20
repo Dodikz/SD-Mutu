@@ -16,10 +16,8 @@ return new class extends Migration
             $table->string('judul_berita', 100);
             $table->text('isi_berita');
             $table->string('gambar_berita', 200);
-            $table->unsignedBigInteger('penulis_id');
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->timestamps();
-
-            $table->foreign('penulis_id')->references('id')->on('akuns')->onDelete('cascade');
         });
     }
 

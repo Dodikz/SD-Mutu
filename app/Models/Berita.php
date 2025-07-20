@@ -8,8 +8,8 @@ class Berita extends Model
 {
     //
 
-    public function akun()
+    public function user()
     {
-        return $this->belongsTo(Akun::class);
+        return $this->belongsTo(User::class);
     }
 }

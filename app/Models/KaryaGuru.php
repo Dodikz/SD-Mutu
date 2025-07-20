@@ -8,8 +8,8 @@ class KaryaGuru extends Model
 {
     //
 
-    public function akun()
+    public function users()
     {
-        return $this->belongsTo(Akun::class);
+        return $this->belongsTo(User::class);
     }
 }
