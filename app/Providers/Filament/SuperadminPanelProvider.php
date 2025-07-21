@@ -29,6 +29,7 @@ class SuperadminPanelProvider extends PanelProvider
             ->id('superadmin')
             ->path('superadmin')
             ->login()
+            ->sidebarFullyCollapsibleOnDesktop()
             ->registration(false)
             ->colors([
                 'primary' => Color::Amber,
