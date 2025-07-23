@@ -2,9 +2,10 @@
 
 namespace App\Filament\Resources\ProfilResource\Pages;
 
-use App\Filament\Resources\ProfilResource;
-use Filament\Actions;
+use Filament\Actions\Action;
 use Filament\Resources\Pages\ListRecords;
+use App\Filament\Resources\ProfilResource;
+use App\Models\Profil;
 
 class ListProfils extends ListRecords
 {
@@ -13,7 +14,11 @@ class ListProfils extends ListRecords
     protected function getHeaderActions(): array
     {
         return [
-            Actions\CreateAction::make(),
+            Action::make('editProfile')
+                ->label('Ubah Profil Sekolah')
+                ->icon('heroicon-o-pencil-square')
+                ->url(fn () => route('filament.superadmin.resources.profils.edit', ['record' => Profil::first()?->id]))
+                ->color('primary'),
         ];
     }
 }
