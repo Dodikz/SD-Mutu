@@ -10,10 +10,19 @@ class ListEkstras extends ListRecords
 {
     protected static string $resource = EkstraResource::class;
 
+    protected static ?string $title = 'Daftar Ekstrakurikuler';
+    
+    public function getBreadcrumb(): ?string
+    {
+        return 'Daftar Ekstrakurikuler';
+    }
+
     protected function getHeaderActions(): array
     {
         return [
-            Actions\CreateAction::make(),
+            Actions\CreateAction::make('Tambah Ekstrakurikuler')
+                ->icon('heroicon-o-plus')
+                ->label('Tambah Ekstrakurikuler'),
         ];
     }
 }
