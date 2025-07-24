@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('beritas', function (Blueprint $table) {
             $table->id();
             $table->string('judul_berita', 100);
+            $table->string('slug')->unique();
             $table->text('isi_berita');
             $table->string('gambar_berita', 200);
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
