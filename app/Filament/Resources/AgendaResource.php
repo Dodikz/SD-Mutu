@@ -24,6 +24,7 @@ use App\Filament\Resources\AgendaResource\Pages\CreateAgenda;
 use Filament\Tables\Actions\ActionGroup;
 use Filament\Tables\Actions\DeleteAction;
 use Filament\Actions\Modal\Actions\Action;
+use Filament\Forms\Components\Card;
 use Filament\Forms\Components\TimePicker;
 use Filament\Tables\Actions\BulkAction;
 use Filament\Tables\Filters\SelectFilter;
@@ -35,6 +36,7 @@ class AgendaResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-calendar-days';
 
+    protected static ?string $pluralLabel = 'Agenda';
     public static function getNavigationLabel(): string
     {
         return 'Agenda';
@@ -50,7 +52,7 @@ class AgendaResource extends Resource
     {
         return $form
             ->schema([
-                TextInput::make('judul_agenda')
+               Card::make([ TextInput::make('judul_agenda')
                     ->required('Judul agenda harus diisi')
                     ->maxLength(100, 'Judul agenda tidak boleh lebih dari 100 karakter'),
                 TextInput::make('lokasi_agenda')
@@ -82,6 +84,17 @@ class AgendaResource extends Resource
                             return 'Tanggal agenda tidak boleh di masa lalu.';
                         }
                     }),
+                    ])->columns([
+                        'sm' => 1,
+                        'md' => 2,
+                        'lg' => 2,
+                        'xl' => 2,
+                    ])->columnSpan([
+                        'sm' => 1,
+                        'md' => 2,
+                        'lg' => 2,
+                        'xl' => 2,
+                    ])
             ]);
     }
 

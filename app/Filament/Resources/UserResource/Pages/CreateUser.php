@@ -62,7 +62,7 @@ class CreateUser extends CreateRecord
                 'alamat' => $data['alamat'],
                 'no_hp' => $data['no_hp'],
             ]);
-        } catch (ValidationException $e) {
+        } catch (ValidationException $e) {                                  
             foreach ($e->errors() as $messages) {
                 foreach ($messages as $message) {
                     Notification::make()
