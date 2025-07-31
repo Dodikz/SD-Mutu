@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('karya_gurus', function (Blueprint $table) {
             $table->id();
             $table->string('nama_karya_guru', 50);
+            $table->string('slug')->unique();
             $table->string('foto_karya_guru', 200);
             $table->text('isi_karya');
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');

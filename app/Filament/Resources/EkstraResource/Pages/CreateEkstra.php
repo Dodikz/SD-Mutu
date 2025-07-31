@@ -65,13 +65,7 @@ class CreateEkstra extends CreateRecord
     }
 
 
-    protected function afterCreate(): void
-    {
-        Notification::make()
-            ->title('Ekstra berhasil ditambahkan!')
-            ->success()
-            ->send();
-    }
+    
 
     protected function getRedirectUrl(): string
     {

@@ -10,7 +10,9 @@ use Filament\Tables\Table;
 use Filament\Resources\Resource;
 use Filament\Forms\Components\Card;
 use Filament\Forms\Components\Textarea;
+use Filament\Tables\Columns\TextColumn;
 use Filament\Forms\Components\TextInput;
+use Filament\Tables\Columns\ImageColumn;
 use Filament\Forms\Components\FileUpload;
 use Illuminate\Database\Eloquent\Builder;
 use App\Filament\Resources\BannerResource\Pages;
@@ -44,15 +46,19 @@ class BannerResource extends Resource
                         ->label('Judul Banner')
                         ->maxLength(255),
                     FileUpload::make('gambar_banner')
-                        ->label('Gambar Banner')
+                        ->label('Gambar')
                         ->image()
-                        ->maxSize(1024)
-                        ->directory('banners'),
+                        ->directory('banners')
+                        ->disk('public')
+                        ->visibility('public')
+                        ->rules(['image', 'mimes:jpg,jpeg,png', 'max:2048']),
+
                     Textarea::make('deskripsi_banner')
                         ->label('Deskripsi Banner')
                         ->maxLength(500),
                     TextInput::make('link_banner')
                         ->label('Link Banner')
+                        ->suffixIcon('heroicon-m-globe-alt')
                         ->url()
                         ->maxLength(255),
                 ])
@@ -63,7 +69,6 @@ class BannerResource extends Resource
                 'lg' => 2,
                 'xl' => 2,
                 '2xl' => 2,
-                
             ]);
     }
 
@@ -71,19 +76,20 @@ class BannerResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('judul_banner')
+                TextColumn::make('judul_banner')
                     ->label('Judul Banner')
                     ->searchable()
                     ->sortable(),
-                Tables\Columns\ImageColumn::make('gambar_banner')
+                ImageColumn::make('gambar_banner')
                     ->label('Gambar Banner')
-                    ->rounded()
+                    ->disk('public')
+                    ->circular()
                     ->size(50),
-                Tables\Columns\TextColumn::make('deskripsi_banner')
+                TextColumn::make('deskripsi_banner')
                     ->label('Deskripsi Banner')
                     ->searchable()
                     ->sortable(),
-                Tables\Columns\TextColumn::make('link_banner')
+                TextColumn::make('link_banner')
                     ->label('Link Banner')
                     ->searchable()
                     ->sortable(),

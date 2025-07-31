@@ -112,7 +112,7 @@ class UserResource extends Resource
                     ->modalHeading('Hapus Pengguna')
                     ->modalSubheading('Anda yakin ingin menghapus pengguna yang dipilih? Ini tidak bisa dibatalkan.')
                     ->modalButton('Hapus')
-                    ->modalCancelAction('Batalkan')
+                    ->modalCancelActionLabel('Batalkan')
                     ->action(fn($records) => $records->each(fn(User $record) => $record->delete()))
                     ->deselectRecordsAfterCompletion()
                     ->label('Hapus pengguna yang dipilih'),

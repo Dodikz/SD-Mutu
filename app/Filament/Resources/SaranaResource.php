@@ -25,6 +25,7 @@ class SaranaResource extends Resource
     protected static ?string $model = Sarana::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-building-library';
+    protected static ?string $pluralLabel = 'Sarana & Prasarana';
 
     public static function getNavigationLabel(): string
     {
@@ -49,7 +50,6 @@ class SaranaResource extends Resource
                         ->rows(3)
                         ->maxLength(1000),
                 ])
-
             ]);
     }
 

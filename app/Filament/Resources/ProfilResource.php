@@ -25,7 +25,9 @@ class ProfilResource extends Resource
 {
     protected static ?string $model = Profil::class;
 
+
     protected static ?string $navigationIcon = 'heroicon-o-identification';
+    protected static ?string $pluralLabel = 'Profil Sekolah';
 
     public static function getNavigationLabel(): string
     {
@@ -36,6 +38,7 @@ class ProfilResource extends Resource
     {
         return 'Profil Sekolah';
     }
+
 
     public static function form(Form $form): Form
     {
@@ -101,8 +104,7 @@ class ProfilResource extends Resource
         return $table
             ->columns([
                 TextColumn::make('kepala_sekolah')
-                    ->label('Nama Kepala Sekolah')
-                    ->searchable(),
+                    ->label('Nama Kepala Sekolah'),
 
                 ImageColumn::make('foto_kepala_sekolah')
                     ->label('Foto'),
