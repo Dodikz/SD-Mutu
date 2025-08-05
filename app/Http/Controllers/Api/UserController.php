@@ -24,4 +24,22 @@ class UserController extends Controller
         });
         return response()->json($users);
     }
+
+    public function show(Request $request)
+    {
+        $user = User::whereDoesntHave('roles', function ($query) {
+            $query->where('name', 'admin');
+        })->find($request->id);
+        if (!$user) {
+            return response()->json(['message' => 'User not found'], 404);
+        }
+        return response()->json([
+            'id' => $user->id,
+            'name' => $user->name,
+            'email' => $user->email,
+            'jabatan' => $user->jabatan,
+            'alamat' => $user->alamat,
+            'no_hp' => $user->no_hp,
+        ]);
+    }
 }

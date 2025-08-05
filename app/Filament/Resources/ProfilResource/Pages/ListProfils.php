@@ -17,16 +17,16 @@ class ListProfils extends ListRecords
 
     protected function getHeaderActions(): array
     {
-        $profil = \App\Models\Profil::first();
+        $profil = Profil::first();
 
         return [
-            \Filament\Actions\Action::make('editProfile')
-                ->label('Ubah Profil Sekolah')
-                ->icon('heroicon-o-pencil-square')
+            \Filament\Actions\Action::make('manageProfile')
+                ->label($profil ? 'Ubah Profil Sekolah' : 'Tambah Profil Sekolah')
+                ->icon($profil ? 'heroicon-o-pencil-square' : 'heroicon-o-plus')
                 ->url(function () use ($profil) {
                     return $profil
                         ? route('filament.superadmin.resources.profils.edit', ['record' => $profil->id])
-                        : route('filament.superadmin.resources.profils.index');
+                        : route('filament.superadmin.resources.profils.create');
                 })
                 ->color('primary'),
         ];

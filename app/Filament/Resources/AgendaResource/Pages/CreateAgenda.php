@@ -26,12 +26,8 @@ class CreateAgenda extends CreateRecord
     protected function getFormActions(): array
     {
         return [
-            Actions\Action::make('save')
-                ->label('Simpan')
-                ->color('primary'),
-            Actions\Action::make('cancel')
-                ->label('Batal')
-                ->color('secondary'),
+            $this->getCancelFormAction()->label('Batal'),
+            $this->getCreateFormAction()->label('Simpan'),
         ];
     }
 
@@ -49,8 +45,8 @@ class CreateAgenda extends CreateRecord
             Validator::make($data, [
                 'judul_agenda' => ['required', 'max:100'],
                 'lokasi_agenda' => ['required', 'max:100'],
-                'jam_mulai_agenda' => ['required', 'date_format:H:i'],
-                'jam_selesai_agenda' => ['required', 'date_format:H:i'],
+                'jam_mulai_agenda' => ['required', 'date_format:H:i:s'],
+                'jam_selesai_agenda' => ['required', 'date_format:H:i:s'],
                 'tanggal_agenda' => ['required', 'date'],
             ], [
                 'judul_agenda.required' => 'Judul agenda harus diisi!',
